@@ -45,8 +45,8 @@ const projects = [
 
 export default function PortfolioPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-pink-50 to-white dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 text-gray-900 dark:text-gray-100">
-      <header className="max-w-5xl mx-auto px-6 py-10 flex items-center justify-between">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-indigo-50 via-pink-50 to-white dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 text-gray-900 dark:text-gray-100">
+      <header className="max-w-6xl mx-auto w-full px-6 py-10 flex items-center justify-between">
         <Link
           href="/"
           className="font-bold text-lg text-indigo-600 dark:text-pink-400"
@@ -57,7 +57,7 @@ export default function PortfolioPage() {
           Portfolio
         </h1>
       </header>
-      <main className="flex-1 max-w-5xl mx-auto px-6 py-8">
+      <main className="flex-1 max-w-6xl mx-auto w-full px-6 py-8">
         <motion.section
           variants={stagger}
           initial="hidden"
@@ -110,8 +110,8 @@ export default function PortfolioPage() {
           ))}
         </motion.section>
       </main>
-      <footer className="py-8 border-t border-indigo-100 dark:border-gray-800">
-        <div className="max-w-5xl mx-auto px-6 text-sm opacity-70 flex items-center justify-between">
+      <footer className="py-8 border-t border-indigo-100 dark:border-gray-800 w-full">
+        <div className="max-w-6xl mx-auto px-6 text-sm opacity-70 flex items-center justify-between w-full">
           <div>© {new Date().getFullYear()} - Full‑Stack Dev</div>
           <div className="flex items-center gap-4">
             <Link href="#">GitHub</Link>
