@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Footer from "../_components/Footer";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 40 },
@@ -120,16 +121,7 @@ export default function ServicesPage() {
           ))}
         </motion.section>
       </main>
-      <footer className="mt-20 py-8 border-t border-indigo-100 dark:border-gray-800">
-        <div className="max-w-4xl mx-auto px-6 text-sm opacity-70 flex items-center justify-between">
-          <div>© {new Date().getFullYear()} - Full‑Stack Dev</div>
-          <div className="flex items-center gap-4">
-            <Link href="#">GitHub</Link>
-            <Link href="#">LinkedIn</Link>
-            <Link href="#">Twitter</Link>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

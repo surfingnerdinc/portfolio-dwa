@@ -3,6 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { motion } from 'framer-motion';
+import Footer from '@/app/_components/Footer';
 
 type Props = { params: { slug: string } };
 
@@ -202,17 +203,7 @@ export default function BlogPostPage({ params }: Props) {
           />
         </motion.div>
       </main>
-
-      <footer className="mt-20 py-8 border-t border-indigo-100 dark:border-gray-800">
-        <div className="max-w-2xl mx-auto px-6 text-sm opacity-70 flex items-center justify-between">
-          <div>© {new Date().getFullYear()} - Full‑Stack Dev</div>
-          <div className="flex items-center gap-4">
-            <Link href="#">GitHub</Link>
-            <Link href="#">LinkedIn</Link>
-            <Link href="#">Twitter</Link>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

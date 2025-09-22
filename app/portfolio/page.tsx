@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Footer from "../_components/Footer";
 
 type Lang = "pl" | "en";
 
@@ -31,6 +32,15 @@ const projectsCopy: Record<Lang, Array<any>> = {
       stack: ["Electron", "React", "SQLite"],
       award: "Nagroda użytkowników",
     },
+    {
+      slug: "studyontrack",
+      name: "StudyOnTrack",
+      desc: "Platforma do zarządzania nauką i śledzenia postępów. Pozwala użytkownikom planować zadania, monitorować cele i analizować wyniki. Zbudowana w React, Firebase i Tailwind CSS. Dostępna online.",
+      image: "https://via.placeholder.com/400x220?text=StudyOnTrack+Screenshot",
+      stack: ["React", "Firebase", "Tailwind CSS"],
+      award: "Projekt edukacyjny 2025",
+      live: "https://studyontrack.netlify.app",
+    },
   ],
   en: [
     {
@@ -57,6 +67,15 @@ const projectsCopy: Record<Lang, Array<any>> = {
       stack: ["Electron", "React", "SQLite"],
       award: "User Choice Award",
     },
+    {
+      slug: "studyontrack",
+      name: "StudyOnTrack",
+      desc: "A platform for learning management and progress tracking. Users can plan tasks, monitor goals, and analyze results. Built with React, Firebase, and Tailwind CSS. Available online.",
+      image: "https://via.placeholder.com/400x220?text=StudyOnTrack+Screenshot",
+      stack: ["React", "Firebase", "Tailwind CSS"],
+      award: "Educational Project 2025",
+      live: "https://studyontrack.netlify.app",
+    },
   ],
 };
 
@@ -73,14 +92,17 @@ const stagger = {
   show: { transition: { staggerChildren: 0.15 } },
 };
 
-
-// Accept lang from props, default to 'pl' if not provided
 interface PortfolioPageProps {
   lang?: Lang;
 }
 
 export default function PortfolioPage({ lang = "pl" }: PortfolioPageProps) {
+  const [page, setPage] = React.useState(0);
+  const pageSize = 3;
   const projects = projectsCopy[lang];
+  const totalPages = Math.ceil(projects.length / pageSize);
+  const paginatedProjects = projects.slice(page * pageSize, (page + 1) * pageSize);
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-indigo-50 via-pink-50 to-white dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 text-gray-900 dark:text-gray-100">
       <header className="max-w-6xl mx-auto w-full px-6 py-10 flex items-center justify-between">
@@ -96,12 +118,13 @@ export default function PortfolioPage({ lang = "pl" }: PortfolioPageProps) {
       </header>
       <main className="flex-1 max-w-6xl mx-auto w-full px-6 py-8">
         <motion.section
+          key={page}
           variants={stagger}
           initial="hidden"
           animate="show"
           className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {projects.map((p, i) => (
+          {paginatedProjects.map((p, i) => (
             <motion.div
               key={i}
               variants={fadeIn}
@@ -146,17 +169,42 @@ export default function PortfolioPage({ lang = "pl" }: PortfolioPageProps) {
             </motion.div>
           ))}
         </motion.section>
-      </main>
-      <footer className="py-8 border-t border-indigo-100 dark:border-gray-800 w-full">
-        <div className="max-w-6xl mx-auto px-6 text-sm opacity-70 flex items-center justify-between w-full">
-          <div>© {new Date().getFullYear()} - Full‑Stack Dev</div>
-          <div className="flex items-center gap-4">
-            <Link href="#">GitHub</Link>
-            <Link href="#">LinkedIn</Link>
-            <Link href="#">Twitter</Link>
+        {totalPages > 1 && (
+          <div className="flex justify-center items-center gap-2 mt-10">
+            <button
+              onClick={() => setPage((p) => Math.max(0, p - 1))}
+              disabled={page === 0}
+              className="px-4 py-2 rounded-md bg-indigo-100 dark:bg-gray-800 text-indigo-700 dark:text-pink-300 font-semibold shadow disabled:opacity-40 disabled:cursor-not-allowed transition"
+              aria-label={lang === "pl" ? "Poprzednia strona" : "Previous page"}
+            >
+              {lang === "pl" ? "Poprzednie" : "Previous"}
+            </button>
+            {[...Array(totalPages)].map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setPage(idx)}
+                className={`w-8 h-8 rounded-full font-bold border-2 transition text-sm ${
+                  page === idx
+                    ? "bg-indigo-500 text-white border-indigo-500"
+                    : "bg-white dark:bg-gray-900 text-indigo-700 dark:text-pink-300 border-indigo-200 dark:border-gray-700"
+                }`}
+                aria-label={lang === "pl" ? `Strona ${idx + 1}` : `Page ${idx + 1}`}
+              >
+                {idx + 1}
+              </button>
+            ))}
+            <button
+              onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
+              disabled={page === totalPages - 1}
+              className="px-4 py-2 rounded-md bg-indigo-100 dark:bg-gray-800 text-indigo-700 dark:text-pink-300 font-semibold shadow disabled:opacity-40 disabled:cursor-not-allowed transition"
+              aria-label={lang === "pl" ? "Następna strona" : "Next page"}
+            >
+              {lang === "pl" ? "Następne" : "Next"}
+            </button>
           </div>
-        </div>
-      </footer>
+        )}
+      </main>
+      <Footer />
     </div>
   );
 }
