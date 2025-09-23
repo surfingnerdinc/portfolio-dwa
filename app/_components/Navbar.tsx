@@ -14,12 +14,20 @@ interface NavbarProps {
 export default function Navbar({ lang, setLang, isDark, setIsDark, t }: NavbarProps) {
   const [menuOpen, setMenuOpen] = React.useState(false);
   const navLinks = [
-    { url: "/", title: t.nav.home },
+    { url: "/", title: t.nav.home, lang: lang },
     { url: "/portfolio", title: t.nav.portfolio },
     { url: "/services", title: t.nav.uslugi ?? t.nav.services },
     { url: "#contact", title: t.nav.kontakt ?? t.nav.contact },
     { url: "#blog", title: t.nav.blog },
   ];
+
+  // Persist language selection in localStorage
+  const handleLangChange = (newLang: "pl" | "en") => {
+    setLang(newLang);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("lang", newLang);
+    }
+  };
 
   const topVariants = {
     closed: { rotate: 0 },
@@ -82,7 +90,7 @@ export default function Navbar({ lang, setLang, isDark, setIsDark, t }: NavbarPr
           </motion.button>
           <motion.button
             whileTap={{ scale: 0.9 }}
-            onClick={() => setLang(lang === "pl" ? "en" : "pl")}
+            onClick={() => handleLangChange(lang === "pl" ? "en" : "pl")}
             className="px-3 py-2 rounded-md border text-sm"
           >
             {lang === "pl" ? "PL" : "EN"}
@@ -132,7 +140,7 @@ export default function Navbar({ lang, setLang, isDark, setIsDark, t }: NavbarPr
               <motion.button whileTap={{ scale: 0.9 }} onClick={() => setIsDark(!isDark)} className="px-3 py-2 rounded-md border text-sm">
                 {isDark ? "🌙" : "☀️"}
               </motion.button>
-              <motion.button whileTap={{ scale: 0.9 }} onClick={() => setLang(lang === "pl" ? "en" : "pl")} className="px-3 py-2 rounded-md border text-sm">
+              <motion.button whileTap={{ scale: 0.9 }} onClick={() => handleLangChange(lang === "pl" ? "en" : "pl")} className="px-3 py-2 rounded-md border text-sm">
                 {lang === "pl" ? "PL" : "EN"}
               </motion.button>
             </div>

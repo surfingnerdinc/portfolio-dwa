@@ -3,81 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Footer from "../_components/Footer";
-
-type Lang = "pl" | "en";
-
-const projectsCopy: Record<Lang, Array<any>> = {
-  pl: [
-    {
-      slug: "analytics-dashboard",
-      name: "Panel analityczny",
-      desc: "Dashboard z wizualizacjami, eksportem danych i alertami w czasie rzeczywistym. Zbudowany w React, D3 i Node.js.",
-      image: "https://via.placeholder.com/400x220?text=Figma+Screenshot",
-      stack: ["React", "D3", "Node.js"],
-      award: "Najlepszy produkt danych 2024",
-    },
-    {
-      slug: "sales-app",
-      name: "Aplikacja sprzedażowa",
-      desc: "Sklep z zaawansowaną logiką koszyka, integracjami płatności i analizą. Zbudowany w Next.js, Stripe i MongoDB.",
-      image: "https://via.placeholder.com/400x220?text=Figma+Screenshot",
-      stack: ["Next.js", "Stripe", "MongoDB"],
-      award: "Finalista innowacji e-commerce",
-    },
-    {
-      slug: "desktop-tool",
-      name: "Narzędzie desktopowe",
-      desc: "Aplikacja Electron do zarządzania raportami i synchronizacji lokalnej. Zbudowana w Electron, React i SQLite.",
-      image: "https://via.placeholder.com/400x220?text=Figma+Screenshot",
-      stack: ["Electron", "React", "SQLite"],
-      award: "Nagroda użytkowników",
-    },
-    {
-      slug: "studyontrack",
-      name: "StudyOnTrack",
-      desc: "Platforma do zarządzania nauką i śledzenia postępów. Pozwala użytkownikom planować zadania, monitorować cele i analizować wyniki. Zbudowana w React, Firebase i Tailwind CSS. Dostępna online.",
-      image: "https://via.placeholder.com/400x220?text=StudyOnTrack+Screenshot",
-      stack: ["React", "Firebase", "Tailwind CSS"],
-      award: "Projekt edukacyjny 2025",
-      live: "https://studyontrack.netlify.app",
-    },
-  ],
-  en: [
-    {
-      slug: "analytics-dashboard",
-      name: "Analytics Dashboard",
-      desc: "Dashboard with visualizations, data export, and real-time alerts. Built with React, D3, and Node.js.",
-      image: "https://via.placeholder.com/400x220?text=Figma+Screenshot",
-      stack: ["React", "D3", "Node.js"],
-      award: "Best Data Product 2024",
-    },
-    {
-      slug: "sales-app",
-      name: "Sales Application",
-      desc: "Store with advanced cart logic, payment integrations, and analytics. Built with Next.js, Stripe, and MongoDB.",
-      image: "https://via.placeholder.com/400x220?text=Figma+Screenshot",
-      stack: ["Next.js", "Stripe", "MongoDB"],
-      award: "E-commerce Innovation Finalist",
-    },
-    {
-      slug: "desktop-tool",
-      name: "Desktop Tool",
-      desc: "Electron app for report management and local synchronization. Built with Electron, React, and SQLite.",
-      image: "https://via.placeholder.com/400x220?text=Figma+Screenshot",
-      stack: ["Electron", "React", "SQLite"],
-      award: "User Choice Award",
-    },
-    {
-      slug: "studyontrack",
-      name: "StudyOnTrack",
-      desc: "A platform for learning management and progress tracking. Users can plan tasks, monitor goals, and analyze results. Built with React, Firebase, and Tailwind CSS. Available online.",
-      image: "https://via.placeholder.com/400x220?text=StudyOnTrack+Screenshot",
-      stack: ["React", "Firebase", "Tailwind CSS"],
-      award: "Educational Project 2025",
-      live: "https://studyontrack.netlify.app",
-    },
-  ],
-};
+import { projectsCopy, Lang } from "../_data/projects";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 40 },
@@ -96,12 +22,15 @@ interface PortfolioPageProps {
   lang?: Lang;
 }
 
-export default function PortfolioPage({ lang = "pl" }: PortfolioPageProps) {
+export default function PortfolioPage({ lang }: PortfolioPageProps) {
   const [page, setPage] = React.useState(0);
-  const pageSize = 3;
-  const projects = projectsCopy[lang];
+  const pageSize = 6;
+  const projects = projectsCopy[lang || "pl"];
   const totalPages = Math.ceil(projects.length / pageSize);
-  const paginatedProjects = projects.slice(page * pageSize, (page + 1) * pageSize);
+  const paginatedProjects = projects.slice(
+    page * pageSize,
+    (page + 1) * pageSize
+  );
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-indigo-50 via-pink-50 to-white dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 text-gray-900 dark:text-gray-100">
@@ -110,7 +39,7 @@ export default function PortfolioPage({ lang = "pl" }: PortfolioPageProps) {
           href="/"
           className="font-bold text-lg text-indigo-600 dark:text-pink-400"
         >
-          ← {lang === "pl" ? "Start" : "Home"}
+          ← {lang === "pl" ? "Strona główna" : "Home"}
         </Link>
         <h1 className="text-2xl font-extrabold text-gray-800 dark:text-gray-100">
           {lang === "pl" ? "Portfolio" : "Portfolio"}
@@ -136,7 +65,9 @@ export default function PortfolioPage({ lang = "pl" }: PortfolioPageProps) {
             >
               <div className="w-full h-44 bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
                 <img
-                  src={p.image}
+                  src={
+                    typeof p.image === "string" ? p.image : p.image?.src || ""
+                  }
                   alt={p.name + " screenshot"}
                   className="object-cover w-full h-full"
                 />
@@ -188,7 +119,9 @@ export default function PortfolioPage({ lang = "pl" }: PortfolioPageProps) {
                     ? "bg-indigo-500 text-white border-indigo-500"
                     : "bg-white dark:bg-gray-900 text-indigo-700 dark:text-pink-300 border-indigo-200 dark:border-gray-700"
                 }`}
-                aria-label={lang === "pl" ? `Strona ${idx + 1}` : `Page ${idx + 1}`}
+                aria-label={
+                  lang === "pl" ? `Strona ${idx + 1}` : `Page ${idx + 1}`
+                }
               >
                 {idx + 1}
               </button>

@@ -31,7 +31,7 @@ export default function BlogSection({ t, isDark, fadeIn, scaleIn, staggerContain
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}
-            className={isDark ? "p-6 rounded-xl bg-gray-800 text-gray-100" : "p-6 rounded-xl bg-gradient-to-br from-indigo-50 via-pink-50 to-yellow-50 text-gray-900 shadow"}
+            className={isDark ? "p-6 rounded-2xl bg-gradient-to-br from-gray-600/60 to-gray-900/60 shadow text-gray-100" : "p-6 rounded-xl bg-gradient-to-br from-indigo-50 via-pink-50 to-yellow-50 text-gray-900 shadow"}
           >
             <motion.h4 variants={scaleIn} className="font-semibold text-indigo-700 dark:text-indigo-300">
               <Link href={`/blog/${post.slug}`}>{post.title}</Link>

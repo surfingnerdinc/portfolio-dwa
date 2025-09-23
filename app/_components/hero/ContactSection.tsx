@@ -36,7 +36,7 @@ export default function ContactSection({ t, isDark, lang, form, setForm, sending
         whileHover={{ scale: 1.02, boxShadow: "0 8px 32px rgba(99,102,241,0.15)" }}
         transition={{ type: "spring", stiffness: 300 }}
       >
-        <motion.h3 variants={scaleIn} className="text-3xl font-bold text-indigo-600 dark:text-gray-100 mb-2 text-center drop-shadow-lg">
+        <motion.h3 variants={scaleIn} className="text-3xl font-bold text-indigo-600 dark:text-gray-600 mb-2 text-center drop-shadow-lg">
           {t.contact.title}
         </motion.h3>
         <motion.p variants={fadeIn} className="mb-6 text-sm opacity-80 text-center">
@@ -49,7 +49,7 @@ export default function ContactSection({ t, isDark, lang, form, setForm, sending
         >
           <motion.input
             variants={fadeIn}
-            className="p-3 rounded-xl border border-indigo-300 focus:border-pink-400 focus:ring-2 focus:ring-pink-200 outline-none bg-white/60 dark:bg-gray-900/60 shadow-sm transition-all duration-200"
+            className="p-3 rounded-xl border border-indigo-300 focus:border-pink-400 focus:ring-2 focus:ring-pink-200 outline-none bg-white/60 dark:bg-gray-300/60 shadow-sm transition-all duration-200"
             placeholder={lang === "pl" ? "Twoje imię" : "Your name"}
             value={form.name}
             onChange={e => setForm((f: any) => ({ ...f, name: e.target.value }))}
@@ -57,7 +57,7 @@ export default function ContactSection({ t, isDark, lang, form, setForm, sending
           />
           <motion.input
             variants={fadeIn}
-            className="p-3 rounded-xl border border-indigo-300 focus:border-pink-400 focus:ring-2 focus:ring-pink-200 outline-none bg-white/60 dark:bg-gray-900/60 shadow-sm transition-all duration-200"
+            className="p-3 rounded-xl border border-indigo-300 focus:border-pink-400 focus:ring-2 focus:ring-pink-200 outline-none bg-white/60 dark:bg-gray-300/60 shadow-sm transition-all duration-200"
             placeholder={lang === "pl" ? "E-mail" : "Email"}
             value={form.email}
             onChange={e => setForm((f: any) => ({ ...f, email: e.target.value }))}
@@ -66,7 +66,7 @@ export default function ContactSection({ t, isDark, lang, form, setForm, sending
           />
           <motion.textarea
             variants={fadeIn}
-            className="sm:col-span-2 p-3 rounded-xl border border-indigo-300 focus:border-pink-400 focus:ring-2 focus:ring-pink-200 outline-none bg-white/60 dark:bg-gray-900/60 shadow-sm transition-all duration-200 h-32 resize-none"
+            className="sm:col-span-2 p-3 rounded-xl border border-indigo-300 focus:border-pink-400 focus:ring-2 focus:ring-pink-200 outline-none bg-white/60 dark:bg-gray-300/60 shadow-sm transition-all duration-200 h-32 resize-none"
             placeholder={lang === "pl" ? "Opisz swój projekt" : "Describe your project"}
             value={form.message}
             onChange={e => setForm((f: any) => ({ ...f, message: e.target.value }))}

@@ -150,9 +150,18 @@ const articles: Record<string, { title: string; content: React.ReactElement }> =
   }
 };
 
-export default function BlogPostPage({ params }: Props) {
+export default function BlogPostPage({ params }: Props) { 
+
+  const [isDark, setIsDark] = React.useState(true);
+  React.useEffect(() => {
+    const savedTheme = typeof window !== 'undefined' ? localStorage.getItem('site-theme') : null;
+    if (savedTheme) setIsDark(savedTheme === 'dark');
+  }, []);
+
   const article = articles[params.slug];
   if (!article) return notFound();
+
+
 
   // Animation variants
   const fadeIn = { hidden: { opacity: 0, y: 40 }, show: { opacity: 1, y: 0, transition: { duration: 0.7 } } };
@@ -160,7 +169,11 @@ export default function BlogPostPage({ params }: Props) {
   const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.15 } } };
 
   return (
-  <div className="min-h-screen flex flex-col bg-gradient-to-br from-indigo-50 via-pink-50 to-white dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 text-gray-900 dark:text-gray-100 relative">
+  <div className={
+    isDark
+      ? "min-h-screen flex flex-col bg-gradient-to-br from-gray-900 via-gray-950 to-gray-900 text-gray-100 relative"
+      : "min-h-screen flex flex-col bg-white text-gray-900 relative"
+  }>
       {/* Floating Back Button */}
       <motion.div
         initial={{ opacity: 0, x: -30 }}
@@ -189,9 +202,13 @@ export default function BlogPostPage({ params }: Props) {
           {/* Card Wrapper for Content */}
           <motion.div
             variants={fadeIn}
-            className="rounded-3xl shadow-2xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border border-indigo-100 dark:border-gray-800 p-8"
+            className={
+              isDark
+                ? "rounded-3xl shadow-2xl bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 border border-indigo-100 dark:border-gray-800 p-8 text-gray-100"
+                : "rounded-3xl shadow-2xl bg-white border border-indigo-100 p-8 text-gray-900"
+            }
           >
-            <div className="space-y-8">{article.content}</div>
+            <div className="space-y-8 :">{article.content}</div>
           </motion.div>
 
           {/* Decorative Animated Gradient Bar */}

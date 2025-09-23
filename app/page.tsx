@@ -8,6 +8,9 @@ import Link from "next/link";
 import BlogSection from "./_components/hero/BlogSection";
 import PortfolioSection from "./_components/hero/PortfolioSection";
 import ContactSection from "./_components/hero/ContactSection";
+import { projectsCopy } from "./_data/projects";
+import copy from "./_data/texts";
+import BrowserFrame from "./_components/BrowserFrame";
 
 type Lang = "pl" | "en";
 
@@ -31,171 +34,21 @@ const staggerContainer = {
   show: { transition: { staggerChildren: 0.15 } },
 };
 
-const copy: Record<Lang, any> = {
-  pl: {
-    nav: {
-      home: "Start",
-      portfolio: "Portfolio",
-      uslugi: "Usługi",
-      kontakt: "Kontakt",
-      blog: "Artykuły",
-    },
-    hero: {
-      title: "Tworzę nowoczesne aplikacje webowe i desktopowe",
-      subtitle:
-        "Full‑stack developer — od przemyślanego front‑endu po skalowalny back‑end. Buduję interfejsy, które sprzedają i systemy, które działają.",
-      cta1: "Zobacz portfolio",
-      cta2: "Skontaktuj się",
-    },
-    blog: {
-      title: "Artykuły i porady",
-      posts: [
-        {
-          slug: "wybor-technologii",
-          title: "Jak wybrać odpowiednią technologię do projektu?",
-          excerpt:
-            "Krótki przewodnik, który pomoże Ci uniknąć błędów na starcie.",
-        },
-        {
-          slug: "dlaczego-ux",
-          title: "Dlaczego warto inwestować w UX?",
-          excerpt:
-            "Dobrze zaprojektowany interfejs to większa konwersja i lojalność klientów.",
-        },
-        {
-          slug: "bezpieczenstwo-aplikacji",
-          title: "Bezpieczeństwo aplikacji webowych",
-          excerpt: "Podstawowe praktyki, które chronią dane Twoich klientów.",
-        },
-      ],
-    },
-    about: {
-      title: "O mnie",
-      paragraphs: [
-        "Jestem doświadczonym full-stack developerem, który łączy technologię z biznesem. Specjalizuję się w nowoczesnych aplikacjach webowych i desktopowych, dbając o każdy detal projektu.",
-        "Współpracowałem z firmami z branży fintech, e-commerce, edukacji i startupami. Moje projekty zdobywały nagrody i były wdrażane na rynkach międzynarodowych.",
-        "Stawiam na partnerską współpracę, transparentność i szybkie iteracje. Wierzę, że najlepsze produkty powstają tam, gdzie technologia wspiera realne potrzeby użytkowników.",
-        "Poza kodowaniem prowadzę warsztaty, szkolenia i mentoring dla młodych programistów. Interesuję się designem, AI oraz automatyzacją procesów.",
-        "W wolnym czasie podróżuję, testuję nowe narzędzia i dzielę się wiedzą na blogu.",
-      ],
-      highlights: [
-        "10+ lat doświadczenia w IT",
-        "Projekty wdrożone w 7 krajach",
-        "Prelegent na konferencjach branżowych",
-        "Mentor w programach edukacyjnych",
-        "Specjalizacja: React, Next.js, Node.js, TypeScript, UX/UI",
-      ],
-    },
-    portfolio: {
-      title: "Wybrane projekty",
-      items: [
-        {
-          name: "Panel analityczny",
-          desc: "Dashboard z wizualizacjami, eksportem danych i alertami w czasie rzeczywistym.",
-          tech: "React, TS, Node.js"
-        },
-        {
-          name: "Aplikacja sprzedażowa",
-          desc: "Sklep z zaawansowaną logiką koszyka i integracjami z płatnościami.",
-          tech: "React, TS, Java, Spring"
-        },
-        {
-          name: "Narzędzie desktopowe",
-          desc: "Aplikacja Electron do zarządzania raportami i synchronizacji lokalnej.",
-          tech: "Java, JavaFX"
-        },
-      ],
-    },
-    contact: {
-      title: "Chcesz zacząć projekt?",
-      desc: "Napisz: ",
-      email: "em.dubinski@gmail.com",
-    },
-  },
-  en: {
-    nav: {
-      home: "Home",
-      portfolio: "Portfolio",
-      services: "Services",
-      contact: "Contact",
-      blog: "Blog",
-    },
-    hero: {
-      title: "I build modern web & desktop applications",
-      subtitle:
-        "Full‑stack developer — from thoughtful front‑ends to scalable back‑ends. I craft interfaces that convert and systems that last.",
-      cta1: "See portfolio",
-      cta2: "Get in touch",
-    },
-    blog: {
-      title: "Insights & Articles",
-      posts: [
-        {
-          slug: "choose-tech",
-          title: "How to choose the right tech for your project?",
-          excerpt: "A quick guide to avoid mistakes early on.",
-        },
-        {
-          slug: "why-ux",
-          title: "Why invest in UX?",
-          excerpt: "A well‑designed interface boosts conversion and loyalty.",
-        },
-        {
-          slug: "security-basics",
-          title: "Web app security basics",
-          excerpt: "Essential practices to protect your customers’ data.",
-        },
-      ],
-    },
-    about: {
-      title: "About me",
-      paragraphs: [
-        "I'm an experienced full-stack developer who bridges technology and business. I specialize in modern web and desktop apps, focusing on every detail of the project.",
-        "I've worked with fintech, e-commerce, education companies, and startups. My projects have won awards and been launched internationally.",
-        "I value partnership, transparency, and rapid iteration. I believe the best products are built where technology supports real user needs.",
-        "Beyond coding, I run workshops, trainings, and mentor junior developers. I'm interested in design, AI, and process automation.",
-        "In my free time, I travel, test new tools, and share knowledge on my blog.",
-      ],
-      highlights: [
-        "10+ years in IT",
-        "Projects launched in 7 countries",
-        "Speaker at industry conferences",
-        "Mentor in educational programs",
-        "Specialties: React, Next.js, Node.js, TypeScript, UX/UI",
-      ],
-    },
-    portfolio: {
-      title: "Selected Projects",
-      items: [
-        {
-          name: "Analytics Dashboard",
-          desc: "Dashboard with visualizations, data export, and real-time alerts.",
-          tech: "React, TS, Node.js"
-
-        },
-        {
-          name: "Sales Application",
-          desc: "Store with advanced cart logic and payment integrations.",
-          tech: "React, TS, Java, Spring"
-        },
-        {
-          name: "Desktop Tool",
-          desc: "Electron app for report management and local synchronization.",
-          tech: "Java, JavaFX"
-        },
-      ],
-    },
-    contact: {
-      title: "Ready to start?",
-      desc: "Write to: ",
-      email: "em.dubinski@gmail.com",
-    },
-  },
-};
-
 export default function Page(): JSX.Element {
-  const [lang, setLang] = useState<Lang>("pl");
-  const [isDark, setIsDark] = useState<boolean>(true);
+  const [lang, setLang] = useState<Lang>(() => {
+    if (typeof window !== "undefined") {
+      const savedLang = localStorage.getItem("site-lang") as Lang;
+      return savedLang === "en" ? "en" : "pl";
+    }
+    return "pl";
+  });
+  const [isDark, setIsDark] = useState<boolean>(() => {
+    if (typeof window !== "undefined") {
+      const savedTheme = localStorage.getItem("site-theme");
+      return savedTheme ? savedTheme === "dark" : true;
+    }
+    return true;
+  });
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
@@ -203,9 +56,7 @@ export default function Page(): JSX.Element {
 
   useEffect(() => {
     const savedLang = (localStorage.getItem("site-lang") as Lang) || undefined;
-    const savedTheme = localStorage.getItem("site-theme");
     if (savedLang) setLang(savedLang);
-    if (savedTheme) setIsDark(savedTheme === "dark");
   }, []);
 
   useEffect(() => {
@@ -216,6 +67,7 @@ export default function Page(): JSX.Element {
   }, [isDark]);
 
   const t = copy[lang];
+  const projects = projectsCopy[lang];
 
   const sendMail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -299,27 +151,29 @@ export default function Page(): JSX.Element {
             whileHover={{ scale: 1.05 }}
             className={
               isDark
-                ? "rounded-xl overflow-hidden shadow-xl p-6 bg-gradient-to-br from-gray-800 to-gray-900"
+                ? "overflow-hidden p-6 rounded-2xl bg-gradient-to-br from-gray-600/60 to-gray-900/60 shadow"
                 : "rounded-xl overflow-hidden shadow-xl p-6 bg-gradient-to-br from-yellow-200 via-pink-200 to-indigo-200"
             }
           >
-            <motion.div
-              animate={{ rotate: [0, 1, -1, 0] }}
-              transition={{ repeat: Infinity, duration: 6 }}
-              className="h-64 w-full flex items-center justify-center"
-            >
-              <div className="text-center">
-                <motion.h3 variants={fadeIn} className="text-xl font-bold">
-                  {t.hero.title}
-                </motion.h3>
-                <motion.p
-                  variants={fadeIn}
-                  className="mt-2 text-sm opacity-80 max-w-xs mx-auto"
-                >
-                  {t.hero.subtitle}
-                </motion.p>
-              </div>
-            </motion.div>
+            <BrowserFrame isDark={isDark}>
+              <motion.div
+                animate={{ rotate: [0, 1, -1, 0] }}
+                transition={{ repeat: Infinity, duration: 6 }}
+                className="h-64 w-full flex items-center justify-center"
+              >
+                <div className="text-center">
+                  <motion.h3 variants={fadeIn} className="text-xl font-bold">
+                    {t.hero.browserFrame.title}
+                  </motion.h3>
+                  <motion.p
+                    variants={fadeIn}
+                    className="mt-2 text-sm opacity-80 max-w-xs mx-auto"
+                  >
+                    {t.hero.browserFrame.desc}
+                  </motion.p>
+                </div>
+              </motion.div>
+            </BrowserFrame>
           </motion.div>
         </motion.section>
 
@@ -340,6 +194,7 @@ export default function Page(): JSX.Element {
           lang={lang}
           fadeIn={fadeIn}
           scaleIn={scaleIn}
+          projects={projects}
         />
 
         {/* About */}
@@ -359,15 +214,6 @@ export default function Page(): JSX.Element {
             <motion.div className="space-y-4">
               {t.about.paragraphs.map((p: string, i: number) => (
                 <div className="relative" key={i}>
-                  {/* Offset rectangle behind paragraph, same size */}
-                  <div
-                    className={
-                      isDark
-                        ? "absolute w-full h-full -top-2 -left-2 rounded-lg bg-gray-400 shadow-xl opacity-70"
-                        : "absolute w-full h-full -top-2 -left-2 rounded-lg bg-purple-100 shadow-xl opacity-70"
-                    }
-                    aria-hidden="true"
-                  />
                   <motion.p
                     key={i}
                     variants={fadeIn}
@@ -376,7 +222,7 @@ export default function Page(): JSX.Element {
                     viewport={{ once: true, amount: 0.3 }}
                     className={
                       isDark
-                        ? "relative text-base opacity-90 leading-relaxed bg-gray-900/80 rounded-lg p-4 shadow-lg"
+                        ? "relative text-base opacity-90 leading-relaxed rounded-2xl bg-gradient-to-br from-gray-600/60 to-gray-900/60 shadow p-4"
                         : "relative text-base opacity-90 leading-relaxed bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 rounded-lg p-4 shadow"
                     }
                   >
@@ -402,7 +248,7 @@ export default function Page(): JSX.Element {
                 {t.about.highlights.map((item: string, i: number) => (
                   <li
                     key={i}
-                    className="px-3 py-1 rounded-full bg-indigo-50 dark:bg-gray-800 text-sm font-medium border border-indigo-200 dark:border-gray-300 text-indigo-700 dark:text-pink-300 shadow"
+                    className="px-3 py-1 rounded-full bg-indigo-50 dark:bg-gray-800 text-sm font-medium border border-indigo-200 dark:border-gray-500 text-indigo-700 dark:text-pink-300 shadow"
                   >
                     {item}
                   </li>
@@ -509,7 +355,7 @@ export default function Page(): JSX.Element {
         </motion.section>
 
         {/* Contact */}
-        <ContactSection 
+        <ContactSection
           t={t}
           isDark={isDark}
           fadeIn={fadeIn}
@@ -523,7 +369,6 @@ export default function Page(): JSX.Element {
           lang={lang}
           staggerContainer={staggerContainer}
         />
-
       </main>
       <Footer />
     </div>
