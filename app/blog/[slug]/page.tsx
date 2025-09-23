@@ -150,7 +150,7 @@ const articles: Record<string, { title: string; content: React.ReactElement }> =
   }
 };
 
-export default function BlogPostPage({ params }: Props) { 
+export default function BlogPostPage({ params }: { params: { slug: string } }) { 
 
   const [isDark, setIsDark] = React.useState(true);
   React.useEffect(() => {
