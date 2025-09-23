@@ -54,6 +54,8 @@ export default function ContactSection({ t, isDark, lang, form, setForm, sending
             value={form.name}
             onChange={e => setForm((f: any) => ({ ...f, name: e.target.value }))}
             required
+            id="name"
+            name="name"
           />
           <motion.input
             variants={fadeIn}
@@ -63,9 +65,13 @@ export default function ContactSection({ t, isDark, lang, form, setForm, sending
             onChange={e => setForm((f: any) => ({ ...f, email: e.target.value }))}
             type="email"
             required
+            id="reply_to"
+            name="reply_to"
           />
           <motion.textarea
             variants={fadeIn}
+            id="message"
+            name="message"
             className="sm:col-span-2 p-3 rounded-xl border border-indigo-300 focus:border-pink-400 focus:ring-2 focus:ring-pink-200 outline-none bg-white/60 dark:bg-gray-300/60 shadow-sm transition-all duration-200 h-32 resize-none"
             placeholder={lang === "pl" ? "Opisz swój projekt" : "Describe your project"}
             value={form.message}
