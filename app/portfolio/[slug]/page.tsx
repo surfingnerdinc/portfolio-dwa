@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect} from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Footer from "../../_components/Footer";
@@ -20,8 +20,8 @@ export default function ProjectView() {
   const params = useParams();
   const slug = typeof params?.slug === "string" ? params.slug : Array.isArray(params?.slug) ? params.slug[0] : "";
   const lang: Lang = (typeof window !== 'undefined' && localStorage.getItem('site-lang') === 'en') ? 'en' : 'pl';
-  const [isDark, setIsDark] = React.useState(true);
-  React.useEffect(() => {
+  const [isDark, setIsDark] = useState(true);
+  useEffect(() => {
     const savedTheme = typeof window !== 'undefined' ? localStorage.getItem('site-theme') : null;
     if (savedTheme) setIsDark(savedTheme === 'dark');
   }, []);
