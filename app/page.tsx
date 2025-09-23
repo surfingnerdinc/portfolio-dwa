@@ -92,14 +92,17 @@ const copy: Record<Lang, any> = {
         {
           name: "Panel analityczny",
           desc: "Dashboard z wizualizacjami, eksportem danych i alertami w czasie rzeczywistym.",
+          tech: "React, TS, Node.js"
         },
         {
           name: "Aplikacja sprzedażowa",
           desc: "Sklep z zaawansowaną logiką koszyka i integracjami z płatnościami.",
+          tech: "React, TS, Java, Spring"
         },
         {
           name: "Narzędzie desktopowe",
           desc: "Aplikacja Electron do zarządzania raportami i synchronizacji lokalnej.",
+          tech: "Java, JavaFX"
         },
       ],
     },
@@ -167,14 +170,18 @@ const copy: Record<Lang, any> = {
         {
           name: "Analytics Dashboard",
           desc: "Dashboard with visualizations, data export, and real-time alerts.",
+          tech: "React, TS, Node.js"
+
         },
         {
           name: "Sales Application",
           desc: "Store with advanced cart logic and payment integrations.",
+          tech: "React, TS, Java, Spring"
         },
         {
           name: "Desktop Tool",
           desc: "Electron app for report management and local synchronization.",
+          tech: "Java, JavaFX"
         },
       ],
     },
@@ -351,12 +358,12 @@ export default function Page(): JSX.Element {
             </motion.h3>
             <motion.div className="space-y-4">
               {t.about.paragraphs.map((p: string, i: number) => (
-                <div className="relative">
+                <div className="relative" key={i}>
                   {/* Offset rectangle behind paragraph, same size */}
                   <div
                     className={
                       isDark
-                        ? "absolute w-full h-full -top-2 -left-2 rounded-lg bg-gray-800 shadow-xl opacity-70"
+                        ? "absolute w-full h-full -top-2 -left-2 rounded-lg bg-gray-400 shadow-xl opacity-70"
                         : "absolute w-full h-full -top-2 -left-2 rounded-lg bg-purple-100 shadow-xl opacity-70"
                     }
                     aria-hidden="true"
@@ -395,7 +402,7 @@ export default function Page(): JSX.Element {
                 {t.about.highlights.map((item: string, i: number) => (
                   <li
                     key={i}
-                    className="px-3 py-1 rounded-full bg-indigo-50 dark:bg-gray-800 text-sm font-medium border border-indigo-200 dark:border-gray-700 text-indigo-700 dark:text-pink-300 shadow"
+                    className="px-3 py-1 rounded-full bg-indigo-50 dark:bg-gray-800 text-sm font-medium border border-indigo-200 dark:border-gray-300 text-indigo-700 dark:text-pink-300 shadow"
                   >
                     {item}
                   </li>

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-     <footer className="mt-20 py-8 border-t">
+     <footer className="mt-20 py-8 border-t md:w-[1240px] mx-auto w-full">
         <div className="max-w-6xl mx-auto px-6 text-sm opacity-70 flex items-center justify-between">
           <div>© {new Date().getFullYear()} - SurfingNerd .inc</div>
           <div className="flex items-center gap-4">

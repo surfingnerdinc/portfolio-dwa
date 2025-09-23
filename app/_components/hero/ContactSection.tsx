@@ -23,57 +23,88 @@ export default function ContactSection({ t, isDark, lang, form, setForm, sending
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.3 }}
-      className="mt-16"
+      className="mt-16 flex justify-center items-center"
+      id="contact"
     >
-      <motion.h3 variants={scaleIn} className="text-2xl font-bold text-indigo-600 dark:text-gray-600">{t.contact.title}</motion.h3>
-      <motion.p variants={fadeIn} className="mt-2 text-sm opacity-80">
-        {t.contact.desc} <a className="underline text-pink-600" href={`mailto:${t.contact.email}`}>{t.contact.email}</a>
-      </motion.p>
-      <motion.form
-        variants={staggerContainer}
-        className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4"
-        onSubmit={handleSubmit}
+      <motion.div
+        variants={scaleIn}
+        className={
+          isDark
+            ? "w-full bg-gradient-to-br from-gray-900/80 via-indigo-900/80 to-gray-800/80 rounded-3xl shadow-2xl p-10 border border-indigo-700 backdrop-blur-lg backdrop-saturate-150"
+            : "w-full  bg-white/80 rounded-3xl shadow-2xl p-10 border border-indigo-200 backdrop-blur-lg backdrop-saturate-150"
+        }
+        whileHover={{ scale: 1.02, boxShadow: "0 8px 32px rgba(99,102,241,0.15)" }}
+        transition={{ type: "spring", stiffness: 300 }}
       >
-        <motion.input
-          variants={fadeIn}
-          className="p-3 rounded-md border"
-          placeholder={lang === "pl" ? "Twoje imię" : "Your name"}
-          value={form.name}
-          onChange={e => setForm((f: any) => ({ ...f, name: e.target.value }))}
-          required
-        />
-        <motion.input
-          variants={fadeIn}
-          className="p-3 rounded-md border"
-          placeholder={lang === "pl" ? "E-mail" : "Email"}
-          value={form.email}
-          onChange={e => setForm((f: any) => ({ ...f, email: e.target.value }))}
-          type="email"
-          required
-        />
-        <motion.textarea
-          variants={fadeIn}
-          className="sm:col-span-2 p-3 rounded-md border h-32"
-          placeholder={lang === "pl" ? "Opisz swój projekt" : "Describe your project"}
-          value={form.message}
-          onChange={e => setForm((f: any) => ({ ...f, message: e.target.value }))}
-          required
-        />
-        <motion.button
-          variants={scaleIn}
-          className={isDark ? "sm:col-span-2 px-6 py-3 rounded-md bg-indigo-500 text-white font-semibold" : "sm:col-span-2 px-6 py-3 rounded-md bg-gradient-to-r from-indigo-500 to-pink-500 text-white font-semibold"}
-          type="submit"
-          disabled={sending}
+        <motion.h3 variants={scaleIn} className="text-3xl font-bold text-indigo-600 dark:text-gray-100 mb-2 text-center drop-shadow-lg">
+          {t.contact.title}
+        </motion.h3>
+        <motion.p variants={fadeIn} className="mb-6 text-sm opacity-80 text-center">
+          {t.contact.desc} <a className="underline text-pink-600" href={`mailto:${t.contact.email}`}>{t.contact.email}</a>
+        </motion.p>
+        <motion.form
+          variants={staggerContainer}
+          className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+          onSubmit={handleSubmit}
         >
-          {sending ? (lang === "pl" ? "Wysyłanie..." : "Sending...") : (lang === "pl" ? "Wyślij" : "Send")}
-        </motion.button>
-        {sent && (
-          <div className="sm:col-span-2 text-green-600 mt-2">{lang === "pl" ? "Wiadomość wysłana!" : "Message sent!"}</div>
-        )}
-        {error && (
-          <div className="sm:col-span-2 text-red-600 mt-2">{error}</div>
-        )}
-      </motion.form>
+          <motion.input
+            variants={fadeIn}
+            className="p-3 rounded-xl border border-indigo-300 focus:border-pink-400 focus:ring-2 focus:ring-pink-200 outline-none bg-white/60 dark:bg-gray-900/60 shadow-sm transition-all duration-200"
+            placeholder={lang === "pl" ? "Twoje imię" : "Your name"}
+            value={form.name}
+            onChange={e => setForm((f: any) => ({ ...f, name: e.target.value }))}
+            required
+          />
+          <motion.input
+            variants={fadeIn}
+            className="p-3 rounded-xl border border-indigo-300 focus:border-pink-400 focus:ring-2 focus:ring-pink-200 outline-none bg-white/60 dark:bg-gray-900/60 shadow-sm transition-all duration-200"
+            placeholder={lang === "pl" ? "E-mail" : "Email"}
+            value={form.email}
+            onChange={e => setForm((f: any) => ({ ...f, email: e.target.value }))}
+            type="email"
+            required
+          />
+          <motion.textarea
+            variants={fadeIn}
+            className="sm:col-span-2 p-3 rounded-xl border border-indigo-300 focus:border-pink-400 focus:ring-2 focus:ring-pink-200 outline-none bg-white/60 dark:bg-gray-900/60 shadow-sm transition-all duration-200 h-32 resize-none"
+            placeholder={lang === "pl" ? "Opisz swój projekt" : "Describe your project"}
+            value={form.message}
+            onChange={e => setForm((f: any) => ({ ...f, message: e.target.value }))}
+            required
+          />
+          <motion.button
+            variants={scaleIn}
+            whileHover={{ scale: 1.05, background: isDark ? "linear-gradient(90deg,#6366f1,#ec4899)" : "linear-gradient(90deg,#6366f1,#ec4899)" }}
+            className={
+              isDark
+                ? "sm:col-span-2 px-6 py-3 rounded-xl bg-indigo-500 hover:bg-pink-500 text-white font-semibold shadow-lg transition-all duration-200"
+                : "sm:col-span-2 px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-pink-500 text-white font-semibold shadow-lg transition-all duration-200"
+            }
+            type="submit"
+            disabled={sending}
+          >
+            {sending ? (lang === "pl" ? "Wysyłanie..." : "Sending...") : (lang === "pl" ? "Wyślij" : "Send")}
+          </motion.button>
+          {sent && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="sm:col-span-2 text-green-600 mt-2 text-center"
+            >
+              {lang === "pl" ? "Wiadomość wysłana!" : "Message sent!"}
+            </motion.div>
+          )}
+          {error && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="sm:col-span-2 text-red-600 mt-2 text-center"
+            >
+              {error}
+            </motion.div>
+          )}
+        </motion.form>
+      </motion.div>
     </motion.section>
   );
 }

@@ -160,7 +160,7 @@ export default function BlogPostPage({ params }: Props) {
   const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.15 } } };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-pink-50 to-white dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 text-gray-900 dark:text-gray-100 relative">
+  <div className="min-h-screen flex flex-col bg-gradient-to-br from-indigo-50 via-pink-50 to-white dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 text-gray-900 dark:text-gray-100 relative">
       {/* Floating Back Button */}
       <motion.div
         initial={{ opacity: 0, x: -30 }}
@@ -171,7 +171,7 @@ export default function BlogPostPage({ params }: Props) {
         <Link href="/" className="px-4 py-2 rounded-full bg-white dark:bg-gray-800 shadow-lg border text-indigo-600 dark:text-pink-400 font-semibold hover:bg-indigo-50 dark:hover:bg-gray-700 transition">← Home</Link>
       </motion.div>
 
-      <main className="flex items-center justify-center min-h-[80vh] px-4 py-16">
+  <main className="flex-1 flex items-center justify-center px-4 py-16">
         <motion.div
           variants={stagger}
           initial="hidden"

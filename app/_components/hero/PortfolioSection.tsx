@@ -41,10 +41,13 @@ export default function PortfolioSection({ t, isDark, lang, fadeIn, scaleIn }: P
               <Link href={`/portfolio/${p.slug}`}>{p.name}</Link>
             </motion.h4>
             <motion.p variants={fadeIn} className="mt-3 text-sm opacity-80">{p.desc}</motion.p>
+            <motion.p variants={fadeIn} className="mt-1 text-xs opacity-60">{p.tech}</motion.p>
             <motion.div variants={fadeIn} className="mt-4 flex items-center gap-3">
-              <motion.span variants={scaleIn} className="text-xs px-2 py-1 rounded-full border bg-white dark:bg-gray-700">React</motion.span>
-              <motion.span variants={scaleIn} className="text-xs px-2 py-1 rounded-full border bg-white dark:bg-gray-700">TS</motion.span>
-              <motion.span variants={scaleIn} className="text-xs px-2 py-1 rounded-full border bg-white dark:bg-gray-700">Node</motion.span>
+              {p.tech.split(", ").map((tech: string) => (
+                <motion.span key={tech} variants={scaleIn} className={isDark ? "text-xs px-2 py-1 rounded-full border bg-white dark:bg-gray-700" : "text-xs px-2 py-1 rounded-full border bg-white "}>
+                  {tech}
+                </motion.span>
+              ))}
             </motion.div>
           </motion.article>
         ))}

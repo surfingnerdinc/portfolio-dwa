@@ -95,12 +95,12 @@ export default function ServicesPage() {
   }, []);
   const services = servicesCopy[lang];
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-pink-50 to-white dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 text-gray-900 dark:text-gray-100">
-      <header className="max-w-4xl mx-auto px-6 py-10 flex items-center justify-between">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-pink-50 to-white dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 text-gray-900 dark:text-gray-100 flex flex-col">
+      <header className="max-w-6xl mx-auto w-full px-6 py-10 flex items-center justify-between">
         <Link href="/" className="font-bold text-lg text-indigo-600 dark:text-pink-400">← Home</Link>
         <h1 className="text-2xl font-extrabold text-gray-800 dark:text-gray-100">{lang === 'pl' ? 'Usługi' : 'Services'}</h1>
       </header>
-      <main className="max-w-4xl mx-auto px-6 py-8">
+      <main className="max-w-4xl mx-auto px-6 py-8 flex-1">
         <motion.section
           variants={stagger}
           initial="hidden"

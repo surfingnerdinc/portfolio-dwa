@@ -174,12 +174,12 @@ export default function ProjectView() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-pink-50 to-white dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 text-gray-900 dark:text-gray-600">
-      <header className="max-w-4xl mx-auto px-6 py-10 flex items-center justify-between">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-indigo-50 via-pink-50 to-white dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 text-gray-900 dark:text-gray-600">
+      <header className="max-w-6xl mx-auto w-full px-6 py-10 flex items-center justify-between">
         <Link href="/portfolio" className="font-bold text-lg text-indigo-600 dark:text-pink-400">← Portfolio</Link>
-        <h1 className="text-2xl font-extrabold text-gray-100 dark:text-gray-600">{project.name}</h1>
+        <h1 className="text-2xl font-extrabold text-gray-100 dark:text-gray-600 ml-2">{project.name}</h1>
       </header>
-      <main className="max-w-3xl mx-auto px-6 py-8">
+      <main className="flex-1 max-w-3xl mx-auto px-6 py-8">
         <motion.div
           initial="hidden"
           animate="show"
