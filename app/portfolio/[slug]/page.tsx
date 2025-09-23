@@ -2,6 +2,7 @@
 import React, { useState, useEffect} from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import Footer from "../../_components/Footer";
 import { useParams } from "next/navigation";
 import { projectsCopy, Lang } from "../../_data/projects";
@@ -10,11 +11,6 @@ const fadeIn = {
   hidden: { opacity: 0, y: 40 },
   show: { opacity: 1, y: 0, transition: { duration: 0.7 } },
 };
-const scaleIn = {
-  hidden: { opacity: 0, scale: 0.95 },
-  show: { opacity: 1, scale: 1, transition: { duration: 0.6 } },
-};
-
 
 export default function ProjectView() {
   const params = useParams();
@@ -58,7 +54,7 @@ export default function ProjectView() {
           }
         >
           <div className="w-full h-64 mb-6 rounded-xl overflow-hidden bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
-            <img src={typeof project.image === 'string' ? project.image : project.image?.src} alt={project.name + ' screenshot'} className="object-cover w-full h-full" />
+            <Image src={typeof project.image === 'string' ? project.image : project.image?.src} alt={project.name + ' screenshot'} width={600} height={400} className="object-cover w-full h-full" />
           </div>
           <h2 className="text-3xl font-bold mb-2 text-indigo-700 dark:text-pink-300">{project.name}</h2>
           <p className="text-lg opacity-90 mb-4">{project.desc}</p>

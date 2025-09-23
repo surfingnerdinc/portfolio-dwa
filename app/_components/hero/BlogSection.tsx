@@ -1,14 +1,16 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import Link from "next/link";
+import TextInterface from "@/app/_data/TextInterface";
+import PostInterface from "@/app/_data/BlogInterface";
 
 interface BlogSectionProps {
-  t: any;
+  t: TextInterface;
   isDark: boolean;
-  fadeIn: any;
-  scaleIn: any;
-  staggerContainer: any;
+  fadeIn: Variants;
+  scaleIn: Variants;
+  staggerContainer: Variants;
 }
 
 export default function BlogSection({ t, isDark, fadeIn, scaleIn, staggerContainer }: BlogSectionProps) {
@@ -23,7 +25,7 @@ export default function BlogSection({ t, isDark, fadeIn, scaleIn, staggerContain
     >
       <motion.h3 variants={scaleIn} className="text-2xl font-bold text-pink-600 dark:text-gray-600">{t.blog.title}</motion.h3>
       <div className="mt-6 grid sm:grid-cols-3 gap-6">
-        {t.blog.posts.map((post: any, i: number) => (
+        {t.blog.posts.map((post: PostInterface, i: number) => (
           <motion.article
             key={i}
             variants={fadeIn}

@@ -61,16 +61,19 @@ const copy = {
       title: "Wybrane projekty",
       items: [
         {
+          slug: "portfolio",
           name: "Portfolio Website",
           desc: "Strona portfolio z wizualizacjami projektów, bio i danymi kontaktowymi.",
           tech: "React, TS, Node.js",
         },
         {
+            slug: "studyontrack",
           name: "Study on Track",
           desc: "Aplikacja do zarządzania nauką i postępami uczniów.",
           tech: "Next.js, Java, MySql",
         },
         {
+            slug: "wedding-mm",
           name: "MM-Wedding",
           desc: "Strona dla pary młodej z informacjami o weselu, mapą i listą prezentów.",
           tech: "React, TS, Tailwind CSS",
@@ -141,23 +144,26 @@ const copy = {
     },
     portfolio: {
       title: "Selected Projects",
-      items: [
-        {
-          name: "Analytics Dashboard",
-          desc: "Dashboard with visualizations, data export, and real-time alerts.",
-          tech: "React, TS, Node.js",
-        },
-        {
-          name: "Sales Application",
-          desc: "Store with advanced cart logic and payment integrations.",
-          tech: "React, TS, Java, Spring",
-        },
-        {
-          name: "Desktop Tool",
-          desc: "Electron app for report management and local synchronization.",
-          tech: "Java, JavaFX",
-        },
-      ],
+        items: [
+          {
+            slug: "portfolio",
+            name: "Portfolio Website",
+            desc: "Portfolio website with project visualizations, bio, and contact details.",
+            tech: "React, TS, Node.js",
+          },
+          {
+            slug: "studyontrack",
+            name: "Study on Track",
+            desc: "Application for managing students' learning and progress.",
+            tech: "Next.js, Java, MySql",
+          },
+          {
+            slug: "wedding-mm",
+            name: "MM-Wedding",
+            desc: "Website for a wedding couple with event info, map, and gift list.",
+            tech: "React, TS, Tailwind CSS",
+          },
+        ],
     },
     contact: {
       title: "Ready to start?",

@@ -1,17 +1,19 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
+import TextInterface from "@/app/_data/TextInterface";
+
 
 interface AboutSectionProps {
-  t: any;
+  t: TextInterface;
   isDark: boolean;
   lang: string;
-  fadeIn: any;
-  scaleIn: any;
-  staggerContainer: any;
+  fadeIn: Variants;
+  scaleIn: Variants;
+  // staggerContainer: any;
 }
 
-export default function AboutSection({ t, isDark, lang, fadeIn, scaleIn, staggerContainer }: AboutSectionProps) {
+export default function AboutSection({ t, isDark, lang, fadeIn, scaleIn }: AboutSectionProps) {
   return (
     <motion.section
       initial="hidden"

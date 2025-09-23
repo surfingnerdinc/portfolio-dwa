@@ -86,7 +86,7 @@ export default function Page(): JSX.Element {
       );
       setSent(true);
       setForm({ name: "", email: "", message: "" });
-    } catch (err: any) {
+    } catch (err: unknown) {
       setError("Sending failed. Try again later.");
     }
     setSending(false);

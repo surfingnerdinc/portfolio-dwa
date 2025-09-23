@@ -1,29 +1,27 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Footer from "../_components/Footer";
 import { projectsCopy, Lang } from "../_data/projects";
+import Image from "next/image";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 40 },
   show: { opacity: 1, y: 0, transition: { duration: 0.7 } },
-};
-const scaleIn = {
-  hidden: { opacity: 0, scale: 0.95 },
-  show: { opacity: 1, scale: 1, transition: { duration: 0.6 } },
 };
 const stagger = {
   hidden: {},
   show: { transition: { staggerChildren: 0.15 } },
 };
 
-interface PortfolioPageProps {
-  lang?: Lang;
-}
-
-export default function PortfolioPage({ lang }: PortfolioPageProps) {
-  const [page, setPage] = React.useState(0);
+export default function PortfolioPage() {
+  const [lang, setLang] = useState<Lang>("pl");
+  useEffect(() => {
+    const storedLang = typeof window !== "undefined" ? localStorage.getItem("site-lang") : null;
+    if (storedLang === "en" || storedLang === "pl") setLang(storedLang as Lang);
+  }, []);
+  const [page, setPage] = useState(0);
   const pageSize = 6;
   const projects = projectsCopy[lang || "pl"];
   const totalPages = Math.ceil(projects.length / pageSize);
@@ -64,11 +62,13 @@ export default function PortfolioPage({ lang }: PortfolioPageProps) {
               className="rounded-2xl bg-white/80 dark:bg-gray-900/80 border border-indigo-100 dark:border-gray-800 shadow-lg p-0 flex flex-col transition-all duration-200 overflow-hidden"
             >
               <div className="w-full h-44 bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
-                <img
+                <Image 
                   src={
                     typeof p.image === "string" ? p.image : p.image?.src || ""
                   }
                   alt={p.name + " screenshot"}
+                  width={600}
+                  height={400}
                   className="object-cover w-full h-full"
                 />
               </div>

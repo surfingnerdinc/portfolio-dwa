@@ -2,13 +2,14 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import TextInterface from "../_data/TextInterface";
 
 interface NavbarProps {
   lang: "pl" | "en";
   setLang: (l: "pl" | "en") => void;
   isDark: boolean;
   setIsDark: (d: boolean) => void;
-  t: any;
+  t: TextInterface;
 }
 
 export default function Navbar({ lang, setLang, isDark, setIsDark, t }: NavbarProps) {

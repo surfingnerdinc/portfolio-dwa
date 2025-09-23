@@ -1,20 +1,27 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
+import TextInterface from "@/app/_data/TextInterface";
+
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
 
 interface ContactSectionProps {
-  t: any;
+  t: TextInterface;
   isDark: boolean;
   lang: string;
-  form: any;
-  setForm: any;
+  form: FormData;
+  setForm: React.Dispatch<React.SetStateAction<FormData>>;
   sending: boolean;
   sent: boolean;
   error: string | null;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  fadeIn: any;
-  scaleIn: any;
-  staggerContainer: any;
+  fadeIn: Variants;
+  scaleIn: Variants;
+  staggerContainer: Variants;
 }
 
 export default function ContactSection({ t, isDark, lang, form, setForm, sending, sent, error, handleSubmit, fadeIn, scaleIn, staggerContainer }: ContactSectionProps) {
@@ -52,7 +59,7 @@ export default function ContactSection({ t, isDark, lang, form, setForm, sending
             className="p-3 rounded-xl border border-indigo-300 focus:border-pink-400 focus:ring-2 focus:ring-pink-200 outline-none bg-white/60 dark:bg-gray-300/60 shadow-sm transition-all duration-200"
             placeholder={lang === "pl" ? "Twoje imię" : "Your name"}
             value={form.name}
-            onChange={e => setForm((f: any) => ({ ...f, name: e.target.value }))}
+            onChange={e => setForm((f: FormData ) => ({ ...f, name: e.target.value }))}
             required
             id="name"
             name="name"
@@ -62,7 +69,7 @@ export default function ContactSection({ t, isDark, lang, form, setForm, sending
             className="p-3 rounded-xl border border-indigo-300 focus:border-pink-400 focus:ring-2 focus:ring-pink-200 outline-none bg-white/60 dark:bg-gray-300/60 shadow-sm transition-all duration-200"
             placeholder={lang === "pl" ? "E-mail" : "Email"}
             value={form.email}
-            onChange={e => setForm((f: any) => ({ ...f, email: e.target.value }))}
+            onChange={e => setForm((f: FormData) => ({ ...f, email: e.target.value }))}
             type="email"
             required
             id="reply_to"
@@ -75,7 +82,7 @@ export default function ContactSection({ t, isDark, lang, form, setForm, sending
             className="sm:col-span-2 p-3 rounded-xl border border-indigo-300 focus:border-pink-400 focus:ring-2 focus:ring-pink-200 outline-none bg-white/60 dark:bg-gray-300/60 shadow-sm transition-all duration-200 h-32 resize-none"
             placeholder={lang === "pl" ? "Opisz swój projekt" : "Describe your project"}
             value={form.message}
-            onChange={e => setForm((f: any) => ({ ...f, message: e.target.value }))}
+            onChange={e => setForm((f: FormData) => ({ ...f, message: e.target.value }))}
             required
           />
           <motion.button

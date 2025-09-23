@@ -2,9 +2,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import TextInterface from "@/app/_data/TextInterface";
 
 interface HeroProps {
-  t: any;
+  t: TextInterface;
   isDark: boolean;
 }
 
