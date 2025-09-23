@@ -18,11 +18,7 @@ const stagger = {
   show: { transition: { staggerChildren: 0.15 } },
 };
 
-interface PortfolioPageProps {
-  lang?: Lang;
-}
-
-export default function PortfolioPage({ lang }: PortfolioPageProps) {
+export default function PortfolioPage({ lang }: { lang?: Lang }) {
   const [page, setPage] = React.useState(0);
   const pageSize = 6;
   const projects = projectsCopy[lang || "pl"];
