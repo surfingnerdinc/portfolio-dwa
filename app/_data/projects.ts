@@ -64,7 +64,7 @@ export const projectsCopy: Record<Lang, Array<Project>> = {
         "Efekt biznesowy: Strona firmowa zwiększająca widoczność online i pozyskiwanie klientów.",
       ],
       links: [
-        { label: "Demo", url: "https://iplex.netlify.app/" },
+        { label: "Demo", url: "https://lexip.netlify.app" },
         { label: "GitHub", url: "https://github.com/surfingnerdinc/iplex" },
       ],
     },

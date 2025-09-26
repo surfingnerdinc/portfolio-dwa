@@ -78,8 +78,8 @@ export default function Page(): JSX.Element {
         process.env.REACT_APP_EMAILJS_SERVICE_ID || "service_allmsjo",
         process.env.REACT_APP_EMAILJS_TEMPLATE_ID || "template_u67n7zz",
         {
-          from_name: form.name,
-          from_email: form.email,
+          name: form.name,
+          reply_to: form.email,
           message: form.message,
         },
         process.env.REACT_APP_EMAILJS_USER_ID || "RY59_wZHEZmnNfjwR"
